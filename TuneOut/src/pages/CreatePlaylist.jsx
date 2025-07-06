@@ -14,7 +14,7 @@ const CreatePlaylist = () => {
     const songList = songs.split(',').map(song => song.trim());
 
     try {
-      const res = await fetch('https://fj26176edf.execute-api.us-east-1.amazonaws.com/dev/createPlaylist', {
+      const res = await fetch('https://fj26176edf.execute-api.us-east-1.amazonaws.com/createPlaylist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -28,7 +28,8 @@ const CreatePlaylist = () => {
       setResponse(data);
       setError(null);
     } catch (err) {
-      setError(err.message);
+      console.error('Fetch error:', err);
+      setError(err.message || 'Failed to fetch');
       setResponse(null);
     }
   };
